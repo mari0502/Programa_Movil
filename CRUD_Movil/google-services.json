@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "509207054579",
+    "project_id": "crudmovil-642f4",
+    "storage_bucket": "crudmovil-642f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509207054579:android:6cdf0ea55d1f4475a7cf86",
+        "android_client_info": {
+          "package_name": "com.proyecto.CRUD_Movil"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCp7OQfoWuRCQNE8e1Uklh5kAfiYF9lrXk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
