@@ -9,12 +9,18 @@ const Main_Menu = () =>{
         switch(action){
             case 'add':
                 navigation.navigate('Add_Menu');
+                break;
             case 'consulte':
-                //Do something
+                navigation.navigate('Consulte_Menu');
+                break;
             case 'modify':
-                //Do something
+                navigation.navigate('Modify_Menu');
+                break;
             case 'delete':
-                //Do something
+                navigation.navigate('Delete_Menu');
+                break;
+            default:
+                break;
         }
     }
 

@@ -1,20 +1,16 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
-const Add_Menu = () =>{
-    const navigation = useNavigation();
+const Modify_Menu = () =>{
 
     const handlePress = (action) => {
         switch(action){
-            case 'addStudent':
-                navigation.navigate('Add_Student');
-                break;
-            case 'addCourse':
-                navigation.navigate('Add_Course');
-                break;
-            case 'addStudentXCourse':
-                navigation.navigate('Add_Registration')
+            case 'modifyStudent':
+                //Do something
+            case 'modifyCourse':
+                //Do something
+            case 'modifyRegistration':
+                //Do something
         }
     }
 
@@ -22,16 +18,16 @@ const Add_Menu = () =>{
         <View style = {styles.container}>
 
             <View style= {styles.buttons}>
-                <TouchableOpacity style = {styles.button} onPress={() => handlePress('addStudent')}>
-                    <Text style = {styles.buttonText} >Agregar Estudiante</Text>
+                <TouchableOpacity style = {styles.button} onPress={() => handlePress('modifyStudent')}>
+                    <Text style = {styles.buttonText} >Modificar Estudiante</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style = {styles.button} onPress={() => handlePress('addCourse')}>
-                    <Text style = {styles.buttonText} >Agregar Curso</Text>
+                <TouchableOpacity style = {styles.button} onPress={() => handlePress('modifyCourse')}>
+                    <Text style = {styles.buttonText} >Modificar Curso</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style = {styles.button} onPress={() => handlePress('addStudentXCourse')}>
-                    <Text style = {styles.buttonText} >Matricular Estudiante</Text>
+                <TouchableOpacity style = {styles.button} onPress={() => handlePress('modifyRegistration')}>
+                    <Text style = {styles.buttonText} >Modificar Matricula</Text>
                 </TouchableOpacity>
 
             </View>
@@ -70,5 +66,4 @@ const styles = StyleSheet.create({
     }
 });
 
-
-export default Add_Menu;
+export default Modify_Menu;
