@@ -1,15 +1,20 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const Consulte_Menu = () =>{
+    const navigation = useNavigation();
 
     const handlePress = (action) => {
         switch(action){
-            case 'consulteStudent':
+            case 'addCourse':
+                navigation.navigate('Add_Course');
+                break;
+            case 'modifyCourse':
                 //Do something
-            case 'consulteCourse':
+            case 'registrationCourse':
                 //Do something
-            case 'consulteRegistration':
+            case 'deleteCourse':
                 //Do something
         }
     }
@@ -18,16 +23,20 @@ const Consulte_Menu = () =>{
         <View style = {styles.container}>
 
             <View style= {styles.buttons}>
-                <TouchableOpacity style = {styles.button} onPress={() => handlePress('consulteStudent')}>
-                    <Text style = {styles.buttonText} >Consultar un estudiante</Text>
+                <TouchableOpacity style = {styles.button} onPress={() => handlePress('addCourse')}>
+                    <Text style = {styles.buttonText} >Agregar curso</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style = {styles.button} onPress={() => handlePress('consulteCourse')}>
-                    <Text style = {styles.buttonText} >Consultar un curso</Text>
+                <TouchableOpacity style = {styles.button} onPress={() => handlePress('modifyCourse')}>
+                    <Text style = {styles.buttonText} >Modificar curso</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style = {styles.button} onPress={() => handlePress('consulteRegistration')}>
-                    <Text style = {styles.buttonText} >Consultar Matricula</Text>
+                <TouchableOpacity style = {styles.button} onPress={() => handlePress('registrationCourse')}>
+                    <Text style = {styles.buttonText} >Consultar curso</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style = {styles.button} onPress={() => handlePress('deleteCourse')}>
+                    <Text style = {styles.buttonText} >Eliminar curso</Text>
                 </TouchableOpacity>
 
             </View>

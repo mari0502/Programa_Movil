@@ -2,49 +2,44 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-const Main_Menu = () =>{
+const Add_Menu = () =>{
     const navigation = useNavigation();
 
     const handlePress = (action) => {
         switch(action){
-            case 'add':
-                navigation.navigate('Add_Menu');
+            case 'addStudent':
+                navigation.navigate('Add_Student');
                 break;
-            case 'consulte':
-                navigation.navigate('Consulte_Menu');
+            case 'modifyStudent':
+                navigation.navigate('Modify_Student');
                 break;
-            case 'modify':
-                navigation.navigate('Modify_Menu');
+            case 'consulteStudent':
+                navigation.navigate('Consulte_Student');
                 break;
-            case 'delete':
-                navigation.navigate('Delete_Menu');
-                break;
-            default:
+            case 'deleteStudent':
+                navigation.navigate('Delete_Student');
                 break;
         }
     }
 
     return(
         <View style = {styles.container}>
-            <Text style = {styles.title}>
-                ¡Bienvenido/a!
-            </Text>
 
             <View style= {styles.buttons}>
-                <TouchableOpacity style = {styles.button} onPress={() => handlePress('add')}>
-                    <Text style = {styles.buttonText} >Agregar</Text>
+                <TouchableOpacity style = {styles.button} onPress={() => handlePress('addStudent')}>
+                    <Text style = {styles.buttonText} >Agregar Estudiante</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style = {styles.button} onPress={() => handlePress('consulte')}>
-                    <Text style = {styles.buttonText} >Consultar</Text>
+                <TouchableOpacity style = {styles.button} onPress={() => handlePress('modifyStudent')}>
+                    <Text style = {styles.buttonText} >Modificar Estudiante</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style = {styles.button} onPress={() => handlePress('modify')}>
-                    <Text style = {styles.buttonText} >Modificar</Text>
+                <TouchableOpacity style = {styles.button} onPress={() => handlePress('consulteStudent')}>
+                    <Text style = {styles.buttonText} >Consultar Estudiante</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style = {styles.button} onPress={() => handlePress('delete')}>
-                    <Text style = {styles.buttonText} >Eliminar</Text>
+                <TouchableOpacity style = {styles.button} onPress={() => handlePress('deleteStudent')}>
+                    <Text style = {styles.buttonText} >Eliminar Estudiante</Text>
                 </TouchableOpacity>
 
             </View>
@@ -70,7 +65,7 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     button:{
-        backgroundColor: '#E178C5',
+        backgroundColor: '#4793AF',
         paddingVertical: 10,
         paddingHorizontal: 20,
         marginBottom: 20, 
@@ -83,4 +78,5 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Main_Menu;
+
+export default Add_Menu;

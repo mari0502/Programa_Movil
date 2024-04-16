@@ -1,15 +1,15 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-const Delete_Menu = () =>{
+const Registration_Menu = () =>{
 
     const handlePress = (action) => {
         switch(action){
-            case 'deleteStudent':
+            case 'modifyStudent':
                 //Do something
-            case 'deleteCourse':
+            case 'modifyCourse':
                 //Do something
-            case 'deleteRegistration':
+            case 'modifyRegistration':
                 //Do something
         }
     }
@@ -18,16 +18,16 @@ const Delete_Menu = () =>{
         <View style = {styles.container}>
 
             <View style= {styles.buttons}>
-                <TouchableOpacity style = {styles.button} onPress={() => handlePress('deleteStudent')}>
-                    <Text style = {styles.buttonText} >Eliminar Estudiante</Text>
+                <TouchableOpacity style = {styles.button} onPress={() => handlePress('modifyStudent')}>
+                    <Text style = {styles.buttonText} >Modificar Estudiante</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style = {styles.button} onPress={() => handlePress('deleteCourse')}>
-                    <Text style = {styles.buttonText} >Eliminar Curso</Text>
+                <TouchableOpacity style = {styles.button} onPress={() => handlePress('modifyCourse')}>
+                    <Text style = {styles.buttonText} >Modificar Curso</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style = {styles.button} onPress={() => handlePress('deleteRegistration')}>
-                    <Text style = {styles.buttonText} >Eliminar Matricula</Text>
+                <TouchableOpacity style = {styles.button} onPress={() => handlePress('modifyRegistration')}>
+                    <Text style = {styles.buttonText} >Modificar Matricula</Text>
                 </TouchableOpacity>
 
             </View>
@@ -49,10 +49,11 @@ const styles = StyleSheet.create({
     },
     buttons: {
         justifyContent: 'center',
-        alignItems:'center'
+        alignItems:'center', 
+        marginTop: 20
     },
     button:{
-        backgroundColor: '#4793AF',
+        backgroundColor: '#DD5746',
         paddingVertical: 10,
         paddingHorizontal: 20,
         marginBottom: 20, 
@@ -65,4 +66,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Delete_Menu;
+export default Registration_Menu;

@@ -1,27 +1,38 @@
 
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import db from '../database/Config'
+import { addDoc, collection } from 'firebase/firestore';
 
 const Add_Course = () => {
     const [nombre, setNombre] = useState('');
-    const [carrera, setCarrera] = useState('');
+    const [codigo, setCodigo] = useState('');
 
-    const handleAddStudent = () => {
-        // Aquí puedes manejar la lógica para agregar el estudiante
+    const handleAddStudent = async () => {
+        console.log("DB", db);
 
-        console.log('NombreCurso:', nombre);
-        console.log('Carrera:', carrera);
+        try {
+            console.log("HOLAAAA");
+            const collectionRef = collection(db, 'cursos'); // Referencia a la colección 'carreras'
+            await addDoc(collectionRef, { 
+                code: codigo,
+                name: nombre
+            }); // Agregar un documento a la colección
+            console.log("Se Agregó CURSOS");
+        } catch (error) {
+            console.log("ERROR", error);
+        }
     };
 
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Datos del Curso</Text>
             
-            <Text style={styles.label}>Carrera:</Text>
+            <Text style={styles.label}>Código:</Text>
             <TextInput
                 style={styles.input}
-                value={carrera}
-                onChangeText={setCarrera}
+                value={codigo}
+                onChangeText={setCodigo}
             />
                         
             <Text style={styles.label}>Nombre del Curso:</Text>
