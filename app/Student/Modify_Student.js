@@ -1,4 +1,5 @@
 
+// Importacion de librerias
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -6,6 +7,7 @@ import db from '../database/Config'
 import { getDoc, doc, collection, getDocs, updateDoc } from 'firebase/firestore';
 
 const Modify_Student = () => {
+    // Variables para almacenar datos
     const [nombre, setNombre] = useState('');
     const [primerApellido, setPrimerApellido] = useState('');
     const [segundoApellido, setSegundoApellido] = useState('');
@@ -21,28 +23,30 @@ const Modify_Student = () => {
         const fetchStudents = async () => {
             const data = [];
             
-            const querySnapshot = await getDocs(collection(db, "estudiantes"));
-            querySnapshot.forEach((doc) => {
+            const querySnapshot = await getDocs(collection(db, "estudiantes")); // Obtiene todos los estudiantes
+            querySnapshot.forEach((doc) => { // Recorre los documentos
                 data.push({
                     label: doc.data().carnet,
                     value: doc.id,
                 });
             });
 
-            setStudents(data);
+            setStudents(data); // Guarda los datos
         };
         
-        fetchStudents();
+        fetchStudents(); // Llama a la función
     }, [])
     
 
+    // Funcion para llenar los datos del estudiante
     useEffect(() => {
         const loadStudentData = async () => {
-            if(selectedStudent){
-                const studentData = await getDoc(doc(db, 'estudiantes', selectedStudent));
-                if(studentData.exists()){
+            if(selectedStudent){ // Si hay un estudiante seleccionado
+                const studentData = await getDoc(doc(db, 'estudiantes', selectedStudent)); // Obtiene al estudiante seleccionado
+                if(studentData.exists()){ // Si existe el estudiante
                     const data = studentData.data();
                     
+                    // Setea los datos del estudiante
                     setNombre(data.nombre);
                     setPrimerApellido(data.primerApellido);
                     setSegundoApellido(data.segundoApellido);
@@ -54,14 +58,14 @@ const Modify_Student = () => {
             }
         };
 
-        loadStudentData();
-    }, [selectedStudent]);
+        loadStudentData(); // Llama a la función
+    }, [selectedStudent]); // Se ejecuta dependiendo del estudiante seleccionado
 
-    
+    // Funcion para modificar al estudiante
     const handleModifyStudent = async () => {
         try {
-            if(selectedStudent){
-                await updateDoc(doc(db, 'estudiantes', selectedStudent),{
+            if(selectedStudent){ // Si hay un estudiante seleccionado
+                await updateDoc(doc(db, 'estudiantes', selectedStudent),{ // Actualiza los datos 
                     nombre: nombre,
                     primerApellido: primerApellido,
                     segundoApellido: segundoApellido
@@ -73,17 +77,18 @@ const Modify_Student = () => {
                 //Mensaje de la consola
                 console.log("SE MODIFICÓ ESTUDIANTE");
 
-                //Clean all
+                // Limpia todo
                 setSelectedStudent(null);
                 setNombre('');
                 setPrimerApellido('');
                 setSegundoApellido('');
             }
         } catch (error) {
-            console.log("ERROR", error);
+            console.log("ERROR", error); // Mensaje de error
         }
     };
 
+    // Interfaz
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Seleccione Estudiante</Text>
@@ -130,6 +135,7 @@ const Modify_Student = () => {
     );
 };
 
+// Estilo de la interfaz
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -174,4 +180,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Modify_Student;
+export default Modify_Student; // Exportacion de la funcion

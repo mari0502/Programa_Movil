@@ -1,10 +1,12 @@
 
+// Importaciones de librerias
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import db from '../database/Config'
 import { setDoc, getDoc, doc } from 'firebase/firestore';
 
 const Add_Student = () => {
+    // Variables para almacenar los datos
     const [nombre, setNombre] = useState('');
     const [primerApellido, setPrimerApellido] = useState('');
     const [segundoApellido, setSegundoApellido] = useState('');
@@ -20,7 +22,7 @@ const Add_Student = () => {
             if (studentSnapshot.exists()) {
             // Si ya existe un estudiante con el mismo carnet, mostrar una alerta al usuario
             Alert.alert('Error', 'Ya existe un estudiante con este carnet.');
-            // Clean inputs
+            // Limpia el input
             setCarnet('')
             return;
             }
@@ -33,23 +35,24 @@ const Add_Student = () => {
                 carnet: carnet
             });
 
-            // Shoe message in console
+            // Mensaje en consola
             console.log("SE AGREGÓ ESTUDIANTE");
             
-            // Show message for the user
+            // Mensaje para el usuario
             Alert.alert('Estudiante Agregado', 'El estudiante se ha agregado con éxito.');
 
-            // Clean inputs
+            // Limpia inputs
             setNombre('')
             setPrimerApellido('')
             setSegundoApellido('')
             setCarnet('')
 
         } catch (error) {
-            console.log("ERROR", error);
+            console.log("ERROR", error); // Mensaje de error
         }
     };
 
+    // Interfaz
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Datos del Estudiante</Text>
@@ -93,6 +96,7 @@ const Add_Student = () => {
     );
 };
 
+// Estilo de la interfaz
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -137,4 +141,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Add_Student;
+export default Add_Student; // Exportacion de la funcion

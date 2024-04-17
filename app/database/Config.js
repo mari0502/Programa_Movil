@@ -1,6 +1,8 @@
+// Importaciones
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
+// Configuracion de firebase
 const firebaseConfig = {
   apiKey: "AIzaSyCUEiR6a1HasI2CvR1bqwC6yd_8gLFKAIA",
   authDomain: "crudmovil-642f4.firebaseapp.com",
@@ -11,10 +13,10 @@ const firebaseConfig = {
   measurementId: "G-5B8XRCVRCX"
 };
 
-// Initialize Firebase
+// Inicializa firebase
 const appFirebase = initializeApp(firebaseConfig);
 
-// Get database
+// Obtiene la base de datos
 const db = getFirestore(appFirebase);
 
-export default db;
+export default db; // Exporta la base de datos

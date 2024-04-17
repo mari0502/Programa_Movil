@@ -1,3 +1,4 @@
+// Importaciones de librerias
 import * as React from 'react';
 import 'react-native-gesture-handler';
 
@@ -28,11 +29,13 @@ import Modify_Registration from './Registration/Modify_Registration';
 import Search_Registration from './Registration/Search_Registration';
 import Delete_Registration from './Registration/Delete_Registration';
 
-
+// Variable para navegar
 const Stack = createStackNavigator();
 
+// Funcion principal
 function App() {
 
+  // Definición de navegación a otras páginas
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -58,4 +61,4 @@ function App() {
 }
 
 
-export default App;
+export default App; // Exporta el App

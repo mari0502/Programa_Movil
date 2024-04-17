@@ -1,12 +1,14 @@
+// Importaciones de librerias
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 const Course_Menu = () =>{
+     // Declaración e inicialización de la variable
     const navigation = useNavigation();
 
     const handlePress = (action) => {
-        switch(action){
+        switch(action){ // Dependiendo de la action se dirige a cierta pagina especifica
             case 'addCourse':
                 navigation.navigate('Add_Course');
                 break;
@@ -24,6 +26,7 @@ const Course_Menu = () =>{
         }
     }
 
+    // Interfaz
     return(
         <View style = {styles.container}>
 
@@ -49,6 +52,7 @@ const Course_Menu = () =>{
     );
 };
 
+// Estilo de la interfaz
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -79,4 +83,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Course_Menu;
+export default Course_Menu; // Exportacion de la funcion

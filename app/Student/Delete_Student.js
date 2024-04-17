@@ -1,3 +1,4 @@
+// Importaciones de librerias
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -5,6 +6,7 @@ import db from '../database/Config'
 import { getDoc, doc, collection, getDocs, deleteDoc } from 'firebase/firestore';
 
 const Delete_Student = () => {
+    // Variables para almacenar datos
     const [nombre, setNombre] = useState('');
     const [primerApellido, setPrimerApellido] = useState('');
     const [segundoApellido, setSegundoApellido] = useState('');
@@ -14,23 +16,23 @@ const Delete_Student = () => {
     const [selectedStudent, setSelectedStudent] = useState(null);
     const [students, setStudents] = useState([]);
 
+    //Cargar los estudiantes si hay
     const fetchStudents = async () => {
         const data = [];
         
-        const querySnapshot = await getDocs(collection(db, "estudiantes"));
-        querySnapshot.forEach((doc) => {
+        const querySnapshot = await getDocs(collection(db, "estudiantes")); // Encuentra todos los estudiantes
+        querySnapshot.forEach((doc) => { // Recorre los estudiantes
             data.push({
                 label: doc.data().carnet,
                 value: doc.id,
             });
         });
 
-        setStudents(data);
+        setStudents(data); // Guarda datos
     };
     
-    //Cargar los estudiantes si hay
     useEffect(() => {        
-        fetchStudents();
+        fetchStudents(); // Llama a la función
     }, [])
     
 
@@ -55,7 +57,7 @@ const Delete_Student = () => {
         loadStudentData();
     }, [selectedStudent]);
 
-    
+    // Funcion para eliminar el estudiante
     const handleDeleteStudent = async () => {
         try {
             if(selectedStudent){
@@ -82,6 +84,7 @@ const Delete_Student = () => {
                                 setNombre('');
                                 setPrimerApellido('');
                                 setSegundoApellido('');
+
                                 // Recargar estudiantes
                                 fetchStudents();
                             },
@@ -95,6 +98,7 @@ const Delete_Student = () => {
         }
     };
 
+    // Interfaz
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Seleccione Estudiante</Text>
@@ -141,6 +145,7 @@ const Delete_Student = () => {
     );
 };
 
+// Estilo de la interfaz
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -188,4 +193,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Delete_Student;
+export default Delete_Student; // Exportacion de la funcion

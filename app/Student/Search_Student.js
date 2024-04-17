@@ -1,9 +1,11 @@
+// Importaciones de las librerias
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 import db from '../database/Config'
 import { getDocs, collection } from 'firebase/firestore';
 
 const Search_Student = () => {
+    // Variables para manejar los datos
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [students, setStudents] = useState([]);
@@ -13,8 +15,8 @@ const Search_Student = () => {
         const fetchStudents = async () => {
             const data = [];
 
-            const querySnapshot = await getDocs(collection(db, "estudiantes"));
-            querySnapshot.forEach((doc) => {
+            const querySnapshot = await getDocs(collection(db, "estudiantes")); // Obtener todos los estudiantes
+            querySnapshot.forEach((doc) => { // Recorrerlos
                 data.push({
                     id: doc.id,
                     nombre: doc.data().nombre,
@@ -24,18 +26,19 @@ const Search_Student = () => {
                 });
             });
 
-            setStudents(data);
+            setStudents(data); // Guardar
         };
 
-        fetchStudents();
+        fetchStudents(); // Llamar a la funcion
     }, []);
 
+    // Funcion para buscar estudiante
     const handleSearch = (text) => {
-        setSearchTerm(text);
-        if (text === '') {
-            setSearchResults(students);
+        setSearchTerm(text); // Setea el texto a buscar
+        if (text === '') { // Si es vacío
+            setSearchResults(students); // Muestra todos
         } else {
-            const results = students.filter(student => {
+            const results = students.filter(student => { // filtra los estudiantes
                 return (
                     student.nombre.toLowerCase().includes(text.toLowerCase()) ||
                     student.primerApellido.toLowerCase().includes(text.toLowerCase()) ||
@@ -43,10 +46,11 @@ const Search_Student = () => {
                     student.carnet.includes(text)
                 );
             });
-            setSearchResults(results);
+            setSearchResults(results); // guarda los estudiantes filtrados
         }
     };
 
+    // Interfaz
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Buscar Estudiante</Text>
@@ -75,6 +79,7 @@ const Search_Student = () => {
     );
 };
 
+// Estilo de la interfaz
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -104,4 +109,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Search_Student;
+export default Search_Student; // Exporta la funcion
