@@ -25,6 +25,8 @@ import Delete_Course from './Course/Delete_Course';
 import Registration_Menu from './menus/Registration_Menu';
 import Add_Registration from './Registration/Add_Registration';
 import Modify_Registration from './Registration/Modify_Registration';
+import Search_Registration from './Registration/Search_Registration';
+import Delete_Registration from './Registration/Delete_Registration';
 
 
 const Stack = createStackNavigator();
@@ -48,6 +50,8 @@ function App() {
         <Stack.Screen name='Registration_Menu' component={Registration_Menu}/>
         <Stack.Screen name='Add_Registration' component={Add_Registration}/>
         <Stack.Screen name='Modify_Registration' component={Modify_Registration}/>
+        <Stack.Screen name='Search_Registration' component={Search_Registration}/>
+        <Stack.Screen name='Delete_Registration' component={Delete_Registration}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

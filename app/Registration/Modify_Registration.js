@@ -1,8 +1,9 @@
 
+/// Importaciones de librerias
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import db from '../database/Config'
+import db from '../database/Config' // Importacion de la base de datos
 import { getDoc, doc, collection, getDocs, updateDoc } from 'firebase/firestore';
 
 const Modify_Registration = () => {
@@ -62,7 +63,7 @@ const Modify_Registration = () => {
         const fetchMatriculas = async () => {
             const data = [];
             
-            const querySnapshot = await getDocs(collection(db, "matriculas")); // Obtiene los documentos de cursos
+            const querySnapshot = await getDocs(collection(db, "matriculas")); // Obtiene los documentos de matriculas
             querySnapshot.forEach((doc) => { // Recorre los documentos
                 data.push({
                     label: doc.data().codMatricula ,
@@ -76,30 +77,33 @@ const Modify_Registration = () => {
     }, [])
 
 
+    // Funcion para seleccionar según código de matricula
     useEffect(() => {
         const loadData = async () => {
-            if(valueCodMatricula){
-                const matriculaData = await getDoc(doc(db, 'matriculas', valueCodMatricula));
-                if(matriculaData.exists()){
-                    const data = matriculaData.data();
+            if(valueCodMatricula){ // Si la matricula se encuentra seleccionada
+                const matriculaData = await getDoc(doc(db, 'matriculas', valueCodMatricula)); // Obtiene el documento de esa matricula
+                if(matriculaData.exists()){ // Verifica que exista
+                    const data = matriculaData.data(); // Toma los datos
                     
+                    // Setea los datos (rellena)
                     setValueStudent(data.idEstudiante);
                     setValueCourse(data.idCurso)
                 }else{
+                    // Setea los datos si no se ha seleccionado una matricula
                     setValueStudent(null);
                     setValueCourse(null);
                 }
             }
         };
 
-        loadData();
-    }, [valueCodMatricula]);
+        loadData(); // Llama a la funcion
+    }, [valueCodMatricula]); // Se ejecuta si ha cambia el valor de codMatricula
 
     
     const handleModifyRegistration = async () => {
         try {
-            if(valueCodMatricula){
-                await updateDoc(doc(db, 'matriculas', valueCodMatricula),{
+            if(valueCodMatricula){ // Verifica si hay codigo de matricula seleccionado
+                await updateDoc(doc(db, 'matriculas', valueCodMatricula),{ // Actualiza los datos del código de matricula seleccionado
                     idEstudiante: valueStudent,
                     idCurso: valueCourse
                 });
@@ -120,10 +124,11 @@ const Modify_Registration = () => {
                 fetchCourses();
             }
         } catch (error) {
-            console.log("ERROR", error);
+            console.log("ERROR", error); // Mensaje de error
         }
     };
 
+    // Interfaz
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Seleccione Matrícula</Text>
@@ -168,6 +173,7 @@ const Modify_Registration = () => {
     );
 };
 
+// Estilo de la interfaz
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -215,4 +221,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Modify_Registration;
+export default Modify_Registration; // Exportacion de la funcion

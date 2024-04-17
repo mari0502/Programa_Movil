@@ -16,9 +16,11 @@ const Registration_Menu = () =>{
                 navigation.navigate('Modify_Registration');
                 break;
             case 'consulteRegistration':
-                //Do something
+                navigation.navigate('Search_Registration');
+                break;
             case 'deleteRegistration':
-                //Do something
+                navigation.navigate('Delete_Registration');
+                break;
             default:
                 break;
         }
