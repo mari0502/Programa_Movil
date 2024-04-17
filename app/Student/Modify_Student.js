@@ -1,10 +1,11 @@
+
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import db from '../database/Config'
-import { getDoc, doc, collection, getDocs, deleteDoc } from 'firebase/firestore';
+import { getDoc, doc, collection, getDocs, updateDoc } from 'firebase/firestore';
 
-const Delete_Student = () => {
+const Modify_Student = () => {
     const [nombre, setNombre] = useState('');
     const [primerApellido, setPrimerApellido] = useState('');
     const [segundoApellido, setSegundoApellido] = useState('');
@@ -57,37 +58,26 @@ const Delete_Student = () => {
     }, [selectedStudent]);
 
     
-    const handleDeleteStudent = async () => {
+    const handleModifyStudent = async () => {
         try {
             if(selectedStudent){
-                // Mostrar confirmación
-                Alert.alert(
-                    'Eliminar estudiante',
-                    '¿Estás seguro de que deseas eliminar este estudiante?',
-                    [
-                        {
-                            text: 'Cancelar',
-                            style: 'cancel'
-                        },
-                        {
-                            text: 'Eliminar',
-                            /*onPress: async () => {
-                                // Eliminar el estudiante
-                                await deleteDoc(doc(db, 'estudiantes', selectedStudent));
+                await updateDoc(doc(db, 'estudiantes', selectedStudent),{
+                    nombre: nombre,
+                    primerApellido: primerApellido,
+                    segundoApellido: segundoApellido
+                });
 
-                                // Mostrar mensaje de éxito
-                                Alert.alert('El estudiante se ha eliminado con éxito');
+                //Mostrar mensaje de éxito
+                Alert.alert('El estudiante se ha modificado con éxito');
 
-                                // Limpiar los campos
-                                setSelectedStudent(null);
-                                setNombre('');
-                                setPrimerApellido('');
-                                setSegundoApellido('');
-                            },*/
-                            style: 'destructive'
-                        }
-                    ]
-                );
+                //Mensaje de la consola
+                console.log("SE MODIFICÓ ESTUDIANTE");
+
+                //Clean all
+                setSelectedStudent(null);
+                setNombre('');
+                setPrimerApellido('');
+                setSegundoApellido('');
             }
         } catch (error) {
             console.log("ERROR", error);
@@ -131,8 +121,8 @@ const Delete_Student = () => {
             />
             
             <View style= {styles.buttons}>
-                <TouchableOpacity style = {styles.button} onPress={handleDeleteStudent}>
-                    <Text style = {styles.buttonText} >Eliminar</Text>
+                <TouchableOpacity style = {styles.button} onPress={handleModifyStudent}>
+                    <Text style = {styles.buttonText} >Modificar</Text>
                 </TouchableOpacity>
             </View>
 
@@ -184,5 +174,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Delete_Student;
-       
+export default Modify_Student;
